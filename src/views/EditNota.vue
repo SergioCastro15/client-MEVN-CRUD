@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>Editar Nota</h1>
+    <h1>Editar Nota {{getNota.nombre}} {{getNota.descripcion}}</h1>
     <Form
       :nombreActual="getNota.nombre"
       :descripcionActual="getNota.descripcion"
@@ -21,14 +21,11 @@ export default {
     }
   },
   beforeMount() {
-    this.$store.dispatch('getNotas');
+    this.$store.dispatch('getNota', this.id);
   },
   computed: {
-    getNotas() {
-      return this.$store.state.notas;
-    },
     getNota() {
-      return this.getNotas.find(nota => nota._id === this.id);
+      return this.$store.state.nota;
     }
   },
   methods: {
